@@ -65,7 +65,14 @@ func (api *API) ApplicationsDelete(apps Applications) (err error) {
 	for i, app := range apps {
 		ids[i] = app.ApplicationId
 	}
-	return api.ApplicationsDeleteByIds(ids)
+
+	err = api.ApplicationsDeleteByIds(ids)
+	if err == nil {
+		for i := range apps {
+			apps[i].ApplicationId = ""
+		}
+	}
+	return
 }
 
 // Wrapper for application.delete: https://www.zabbix.com/documentation/2.0/manual/appendix/api/application/delete

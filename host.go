@@ -112,7 +112,14 @@ func (api *API) HostsDelete(hosts Hosts) (err error) {
 	for i, host := range hosts {
 		ids[i] = host.HostId
 	}
-	return api.HostsDeleteByIds(ids)
+
+	err = api.HostsDeleteByIds(ids)
+	if err == nil {
+		for i := range hosts {
+			hosts[i].HostId = ""
+		}
+	}
+	return
 }
 
 // Wrapper for host.delete: https://www.zabbxix.com/documentation/2.0/manual/appendix/api/host/delete
