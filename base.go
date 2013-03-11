@@ -55,8 +55,8 @@ func (e *ExpectedMore) Error() string {
 }
 
 type API struct {
-	Auth   string
-	Logger *log.Logger
+	Auth   string      // auth token, filled by Login()
+	Logger *log.Logger // request/response logger, nil by default
 	url    string
 	c      http.Client
 	id     int32

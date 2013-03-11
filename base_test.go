@@ -81,3 +81,10 @@ func TestVersion(t *testing.T) {
 		t.Errorf("Unexpected version: %s", v)
 	}
 }
+
+func ExampleAPI_Call() {
+	api := NewAPI("http://host/api_jsonrpc.php")
+	api.Login("user", "password")
+	res, _ := api.Call("item.get", Params{"itemids": "23970", "output": "extend"})
+	log.Print(res)
+}
