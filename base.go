@@ -42,7 +42,7 @@ func (e *Error) Error() string {
 type ExpectedOneResult int
 
 func (e *ExpectedOneResult) Error() string {
-	return fmt.Sprintf("Expected exactly one result, got %d.", e)
+	return fmt.Sprintf("Expected exactly one result, got %d.", *e)
 }
 
 type ExpectedMore struct {
