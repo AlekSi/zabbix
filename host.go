@@ -112,11 +112,11 @@ func (api *API) HostsDelete(hosts Hosts) (err error) {
 	for i, host := range hosts {
 		ids[i] = host.HostId
 	}
-	return api.HostsDeleteIds(ids)
+	return api.HostsDeleteByIds(ids)
 }
 
 // Wrapper for host.delete: https://www.zabbxix.com/documentation/2.0/manual/appendix/api/host/delete
-func (api *API) HostsDeleteIds(ids []string) (err error) {
+func (api *API) HostsDeleteByIds(ids []string) (err error) {
 	hostIds := make([]map[string]string, len(ids))
 	for i, id := range ids {
 		hostIds[i] = map[string]string{"hostid": id}

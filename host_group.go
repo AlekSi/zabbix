@@ -79,11 +79,11 @@ func (api *API) HostGroupsDelete(hostGroups HostGroups) (err error) {
 	for i, group := range hostGroups {
 		ids[i] = group.GroupId
 	}
-	return api.HostGroupsDeleteIds(ids)
+	return api.HostGroupsDeleteByIds(ids)
 }
 
 // Wrapper for hostgroup.delete: https://www.zabbix.com/documentation/2.0/manual/appendix/api/hostgroup/delete
-func (api *API) HostGroupsDeleteIds(ids []string) (err error) {
+func (api *API) HostGroupsDeleteByIds(ids []string) (err error) {
 	response, err := api.CallWithError("hostgroup.delete", ids)
 	if err != nil {
 		return
