@@ -81,7 +81,7 @@ func (api *API) HostGroupsDelete(hostGroups HostGroups) (err error) {
 	}
 
 	err = api.HostGroupsDeleteByIds(ids)
-	if err != nil {
+	if err == nil {
 		for i := range hostGroups {
 			hostGroups[i].GroupId = ""
 		}
