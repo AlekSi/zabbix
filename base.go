@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"sync/atomic"
 )
@@ -54,15 +55,22 @@ func (e *ExpectedMore) Error() string {
 }
 
 type API struct {
-	Auth string
-	url  string
-	c    http.Client
-	id   int32
+	Auth   string
+	Logger *log.Logger
+	url    string
+	c      http.Client
+	id     int32
 }
 
 // URL like http://user:password@host/api_jsonrpc.php
 func NewAPI(url string) (api *API) {
 	return &API{url: url, c: http.Client{}}
+}
+
+func (api *API) printf(format string, v ...interface{}) {
+	if api.Logger != nil {
+		api.Logger.Printf(format, v...)
+	}
 }
 
 func (api *API) callBytes(method string, params interface{}) (b []byte, err error) {
@@ -72,7 +80,7 @@ func (api *API) callBytes(method string, params interface{}) (b []byte, err erro
 	if err != nil {
 		return
 	}
-	// log.Printf("Req: %s", b)
+	api.printf("Request : %s", b)
 
 	req, err := http.NewRequest("POST", api.url, bytes.NewReader(b))
 	if err != nil {
@@ -89,7 +97,7 @@ func (api *API) callBytes(method string, params interface{}) (b []byte, err erro
 	defer res.Body.Close()
 
 	b, err = ioutil.ReadAll(res.Body)
-	// log.Printf("Res: %s", b)
+	api.printf("Response: %s", b)
 	return
 }
 
