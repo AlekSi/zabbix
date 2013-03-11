@@ -99,13 +99,7 @@ func (api *API) ItemsGetByApplicationId(id string) (res Items, err error) {
 }
 
 // Wrapper for item.create: https://www.zabbix.com/documentation/2.0/manual/appendix/api/item/create
-func (api *API) ItemsCreate(items Items, applicationIds []string) (err error) {
-	if len(applicationIds) > 0 {
-		for i := range items {
-			items[i].ApplicationIds = applicationIds
-		}
-	}
-
+func (api *API) ItemsCreate(items Items) (err error) {
 	response, err := api.CallWithError("item.create", items)
 	if err != nil {
 		return

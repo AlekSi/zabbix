@@ -7,12 +7,13 @@ import (
 
 func CreateItem(app *Application, t *testing.T) *Item {
 	items := Items{{
-		HostId: app.HostId,
-		Key:    "key.lala.laa",
-		Name:   "name for key",
-		Type:   ZabbixTrapper,
+		HostId:         app.HostId,
+		Key:            "key.lala.laa",
+		Name:           "name for key",
+		Type:           ZabbixTrapper,
+		ApplicationIds: []string{app.ApplicationId},
 	}}
-	err := getAPI(t).ItemsCreate(items, []string{app.ApplicationId})
+	err := getAPI(t).ItemsCreate(items)
 	if err != nil {
 		t.Fatal(err)
 	}
