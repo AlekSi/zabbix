@@ -34,7 +34,7 @@ func TestApplications(t *testing.T) {
 
 	app := CreateApplication(host, t)
 	if app.ApplicationId == "" {
-		t.Errorf("Something is empty: %#v", host)
+		t.Errorf("Id is empty: %#v", app)
 	}
 
 	app2, err := api.ApplicationGetById(app.ApplicationId)

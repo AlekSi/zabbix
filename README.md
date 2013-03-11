@@ -12,6 +12,7 @@ You *have* to run tests before using this package – Zabbix API doesn't match d
     export TEST_ZABBIX_URL=http://host/api_jsonrpc.php
     export TEST_ZABBIX_USER=User
     export TEST_ZABBIX_PASSWORD=Password
+    export TEST_ZABBIX_VERBOSE=1
     go test -v
 
 `TEST_ZABBIX_URL` may contain HTTP basic auth username and password: `http://username:password@host/api_jsonrpc.php`. Also, in some setups URL should be like `http://host/zabbix/api_jsonrpc.php`.
