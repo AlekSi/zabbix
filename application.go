@@ -44,6 +44,22 @@ func (api *API) ApplicationGetById(id string) (res *Application, err error) {
 	return
 }
 
+// Gets application by host Id and name.
+func (api *API) ApplicationGetByHostIdAndName(hostId, name string) (res *Application, err error) {
+	apps, err := api.ApplicationsGet(Params{"hostids": hostId, "filter": map[string]string{"name": name}})
+	if err != nil {
+		return
+	}
+
+	if len(apps) == 1 {
+		res = &apps[0]
+	} else {
+		e := ExpectedOneResult(len(apps))
+		err = &e
+	}
+	return
+}
+
 // Wrapper for application.create: https://www.zabbix.com/documentation/2.0/manual/appendix/api/application/create
 func (api *API) ApplicationsCreate(apps Applications) (err error) {
 	response, err := api.CallWithError("application.create", apps)
