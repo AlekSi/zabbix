@@ -43,7 +43,7 @@ func TestHosts(t *testing.T) {
 		t.Fatal(err)
 	}
 	if len(hosts) != 0 {
-		t.Error("Bad hosts: %#v", hosts)
+		t.Errorf("Bad hosts: %#v", hosts)
 	}
 
 	host := CreateHost(group, t)
@@ -74,7 +74,7 @@ func TestHosts(t *testing.T) {
 		t.Fatal(err)
 	}
 	if len(hosts) != 1 {
-		t.Error("Bad hosts: %#v", hosts)
+		t.Errorf("Bad hosts: %#v", hosts)
 	}
 
 	DeleteHost(host, t)
@@ -84,6 +84,6 @@ func TestHosts(t *testing.T) {
 		t.Fatal(err)
 	}
 	if len(hosts) != 0 {
-		t.Error("Bad hosts: %#v", hosts)
+		t.Errorf("Bad hosts: %#v", hosts)
 	}
 }
