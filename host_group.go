@@ -42,7 +42,7 @@ func (api *API) HostGroupsGet(params Params) (res HostGroups, err error) {
 	return
 }
 
-// Gets host group by Id.
+// Gets host group by Id only if there is exactly 1 matching host group.
 func (api *API) HostGroupGetById(id string) (res *HostGroup, err error) {
 	groups, err := api.HostGroupsGet(Params{"groupids": id})
 	if err != nil {
@@ -74,6 +74,7 @@ func (api *API) HostGroupsCreate(hostGroups HostGroups) (err error) {
 }
 
 // Wrapper for hostgroup.delete: https://www.zabbix.com/documentation/2.0/manual/appendix/api/hostgroup/delete
+// Cleans GroupId in all hostGroups elements if call succeed.
 func (api *API) HostGroupsDelete(hostGroups HostGroups) (err error) {
 	ids := make([]string, len(hostGroups))
 	for i, group := range hostGroups {

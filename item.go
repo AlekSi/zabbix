@@ -68,6 +68,7 @@ type Item struct {
 
 type Items []Item
 
+// Converts slice to map by key. Panics if there are duplicate keys.
 func (items Items) ByKey() (res map[string]Item) {
 	res = make(map[string]Item, len(items))
 	for _, i := range items {
@@ -94,6 +95,7 @@ func (api *API) ItemsGet(params Params) (res Items, err error) {
 	return
 }
 
+// Gets items by application Id.
 func (api *API) ItemsGetByApplicationId(id string) (res Items, err error) {
 	return api.ItemsGet(Params{"applicationids": id})
 }
@@ -114,6 +116,7 @@ func (api *API) ItemsCreate(items Items) (err error) {
 }
 
 // Wrapper for item.delete: https://www.zabbix.com/documentation/2.0/manual/appendix/api/item/delete
+// Cleans ItemId in all items elements if call succeed.
 func (api *API) ItemsDelete(items Items) (err error) {
 	ids := make([]string, len(items))
 	for i, item := range items {

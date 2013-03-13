@@ -28,7 +28,7 @@ func (api *API) ApplicationsGet(params Params) (res Applications, err error) {
 	return
 }
 
-// Gets application by Id.
+// Gets application by Id only if there is exactly 1 matching application.
 func (api *API) ApplicationGetById(id string) (res *Application, err error) {
 	apps, err := api.ApplicationsGet(Params{"applicationids": id})
 	if err != nil {
@@ -44,7 +44,7 @@ func (api *API) ApplicationGetById(id string) (res *Application, err error) {
 	return
 }
 
-// Gets application by host Id and name.
+// Gets application by host Id and name only if there is exactly 1 matching application.
 func (api *API) ApplicationGetByHostIdAndName(hostId, name string) (res *Application, err error) {
 	apps, err := api.ApplicationsGet(Params{"hostids": hostId, "filter": map[string]string{"name": name}})
 	if err != nil {
@@ -76,6 +76,7 @@ func (api *API) ApplicationsCreate(apps Applications) (err error) {
 }
 
 // Wrapper for application.delete: https://www.zabbix.com/documentation/2.0/manual/appendix/api/application/delete
+// Cleans ApplicationId in all apps elements if call succeed.
 func (api *API) ApplicationsDelete(apps Applications) (err error) {
 	ids := make([]string, len(apps))
 	for i, app := range apps {
