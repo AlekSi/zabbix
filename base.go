@@ -62,7 +62,10 @@ type API struct {
 	id     int32
 }
 
-// URL like http://user:password@host/api_jsonrpc.php
+// Creates new API access object.
+// Typical URL is http://host/api_jsonrpc.php or http://host/zabbix/api_jsonrpc.php.
+// It also may contain HTTP basic auth username and password like
+// http://username:password@host/api_jsonrpc.php.
 func NewAPI(url string) (api *API) {
 	return &API{url: url, c: http.Client{}}
 }
@@ -120,6 +123,7 @@ func (api *API) CallWithError(method string, params interface{}) (response Respo
 	return
 }
 
+// Calls "user.authenticate" API method and fills api.Auth field.
 func (api *API) Login(user, password string) (auth string, err error) {
 	params := map[string]string{"user": user, "password": password}
 	response, err := api.CallWithError("user.authenticate", params)
@@ -132,6 +136,7 @@ func (api *API) Login(user, password string) (auth string, err error) {
 	return
 }
 
+// Calls "APIInfo.version" API method
 func (api *API) Version() (v string, err error) {
 	response, err := api.CallWithError("APIInfo.version", Params{})
 	if err != nil {

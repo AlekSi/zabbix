@@ -1,13 +1,11 @@
 zabbix [![Is maintained?](http://stillmaintained.com/AlekSi/zabbix.png)](http://stillmaintained.com/AlekSi/zabbix)
 ======
 
-WARNING! API IS NOT STABLE YET
-
-TODO description
+This Go package provides access to Zabbix API.
 
 Install it: `go get github.com/AlekSi/zabbix`
 
-You *have* to run tests before using this package – Zabbix API doesn't match documentation in few details, which are changing in patch releases. Tests should not be destructive, but you are advised to run them against not-production instance or at least make a backup.
+You *have* to run tests before using this package – Zabbix API doesn't match documentation in few details, which are changing in patch releases. Tests are not expected to be destructive, but you are advised to run them against not-production instance or at least make a backup.
 
     export TEST_ZABBIX_URL=http://host/api_jsonrpc.php
     export TEST_ZABBIX_USER=User
