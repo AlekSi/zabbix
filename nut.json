@@ -1,0 +1,15 @@
+{
+  "Version": "0.1.0",
+  "Vendor": "aleksi",
+  "Authors": [
+    {
+      "FullName": "Alexey Palazhchenko",
+      "Email": "alexey.palazhchenko@gmail.com"
+    }
+  ],
+  "ExtraFiles": [
+    "README.md",
+    "LICENSE"
+  ],
+  "Homepage": ""
+}
