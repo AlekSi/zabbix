@@ -1,7 +1,7 @@
 package zabbix
 
 import (
-	"github.com/AlekSi/reflector"
+	"gonuts.io/aleksi/reflector"
 )
 
 type (

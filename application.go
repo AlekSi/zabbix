@@ -1,7 +1,7 @@
 package zabbix
 
 import (
-	"github.com/AlekSi/reflector"
+	"gonuts.io/aleksi/reflector"
 )
 
 // https://www.zabbix.com/documentation/2.0/manual/appendix/api/application/definitions
