@@ -14,7 +14,7 @@ const (
 	Unavailable AvailableType = 2
 
 	Monitored   StatusType = 0
-	Unmonitored StatusType = 0
+	Unmonitored StatusType = 1
 )
 
 // https://www.zabbix.com/documentation/2.0/manual/appendix/api/host/definitions
