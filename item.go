@@ -61,6 +61,8 @@ type Item struct {
 	Delta       DeltaType `json:"delta"`
 	Description string    `json:"description"`
 	Error       string    `json:"error"`
+	History     int       `json:"history,omitempty"`
+	Trends      int       `json:"trends,omitempty"`
 
 	// Fields below used only when creating applications
 	ApplicationIds []string `json:"applications,omitempty"`
