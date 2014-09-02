@@ -4,6 +4,7 @@ import (
 	. "."
 	"log"
 	"math/rand"
+	"net/http"
 	"os"
 	"regexp"
 	"testing"
@@ -41,6 +42,7 @@ func getAPI(t *testing.T) *API {
 
 	url, user, password := os.Getenv("TEST_ZABBIX_URL"), os.Getenv("TEST_ZABBIX_USER"), os.Getenv("TEST_ZABBIX_PASSWORD")
 	_api = NewAPI(url)
+	_api.SetClient(http.DefaultClient)
 	v := os.Getenv("TEST_ZABBIX_VERBOSE")
 	if v != "" && v != "0" {
 		_api.Logger = log.New(os.Stderr, "[zabbix] ", 0)
