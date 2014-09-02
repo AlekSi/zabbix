@@ -142,9 +142,15 @@ func (api *API) ItemsDeleteByIds(ids []string) (err error) {
 	}
 
 	result := response.Result.(map[string]interface{})
-	itemids := result["itemids"].(map[string]interface{})
-	if len(ids) != len(itemids) {
-		err = &ExpectedMore{len(ids), len(itemids)}
+	itemids1, ok := result["itemids"].([]interface{})
+	l := len(itemids1)
+	if !ok {
+		// some versions actually return map there
+		itemids2 := result["itemids"].(map[string]interface{})
+		l = len(itemids2)
+	}
+	if len(ids) != l {
+		err = &ExpectedMore{len(ids), l}
 	}
 	return
 }
