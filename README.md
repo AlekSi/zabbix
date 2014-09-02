@@ -16,5 +16,6 @@ You *have* to run tests before using this package – Zabbix API doesn't match d
 `TEST_ZABBIX_URL` may contain HTTP basic auth username and password: `http://username:password@host/api_jsonrpc.php`. Also, in some setups URL should be like `http://host/zabbix/api_jsonrpc.php`.
 
 Documentation is available on [godoc.org](http://godoc.org/github.com/AlekSi/zabbix).
+Also, Rafael Fernandes dos Santos wrote a [great article](http://www.sourcecode.net.br/2014/02/zabbix-api-with-golang.html) about using and extending this package.
 
 License: Simplified BSD License (see LICENSE).

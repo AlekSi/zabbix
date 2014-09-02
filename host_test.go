@@ -9,8 +9,8 @@ import (
 )
 
 func CreateHost(group *HostGroup, t *testing.T) *Host {
-	iface := HostInterface{IP: "127.0.0.1", Port: "42", Type: Agent, UseIP: true, Main: true}
 	name := fmt.Sprintf("%s-%d", getHost(), rand.Int())
+	iface := HostInterface{DNS: name, Port: "42", Type: Agent, UseIP: 0, Main: 1}
 	hosts := Hosts{{
 		Host:       name,
 		Name:       "Name for " + name,

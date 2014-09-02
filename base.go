@@ -70,6 +70,11 @@ func NewAPI(url string) (api *API) {
 	return &API{url: url, c: http.Client{}}
 }
 
+// Allows one to use specific http.Client, for example with InsecureSkipVerify transport.
+func (api *API) SetClient(c *http.Client) {
+	api.c = *c
+}
+
 func (api *API) printf(format string, v ...interface{}) {
 	if api.Logger != nil {
 		api.Logger.Printf(format, v...)
@@ -95,6 +100,7 @@ func (api *API) callBytes(method string, params interface{}) (b []byte, err erro
 
 	res, err := api.c.Do(req)
 	if err != nil {
+		api.printf("Error   : %s", err)
 		return
 	}
 	defer res.Body.Close()
