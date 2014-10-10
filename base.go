@@ -129,10 +129,10 @@ func (api *API) CallWithError(method string, params interface{}) (response Respo
 	return
 }
 
-// Calls "user.authenticate" API method and fills api.Auth field.
+// Calls "user.login" API method and fills api.Auth field.
 func (api *API) Login(user, password string) (auth string, err error) {
 	params := map[string]string{"user": user, "password": password}
-	response, err := api.CallWithError("user.authenticate", params)
+	response, err := api.CallWithError("user.login", params)
 	if err != nil {
 		return
 	}
