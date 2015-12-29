@@ -15,7 +15,7 @@ def run(cmd)
 end
 
 run('wget -qO - http://repo.zabbix.com/zabbix-official-repo.key | apt-key add -')
-run("add-apt-repository 'deb http://repo.zabbix.com/zabbix/#{ZABBIX_VERSION}/ubuntu/ trusty main non-free contrib'")
+run("add-apt-repository 'deb http://repo.zabbix.com/zabbix/#{ZABBIX_VERSION}/ubuntu/ precise main non-free contrib'")
 run('apt-get update -qq')
 run('apt-get install -y postgresql')
 run('apt-get install -y apache2 libapache2-mod-php5 php5-pgsql')

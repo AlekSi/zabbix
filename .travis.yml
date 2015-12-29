@@ -1,5 +1,5 @@
 sudo: required
-dist: trusty
+dist: precise
 language: go
 
 go:
@@ -12,10 +12,8 @@ env:
     - TEST_ZABBIX_PASSWORD=zabbix
     - TEST_ZABBIX_VERBOSE=1
   matrix:
-    - ZABBIX_VERSION=1.8
     - ZABBIX_VERSION=2.0
     - ZABBIX_VERSION=2.2
     - ZABBIX_VERSION=2.4
 
-before_install:
-  - sudo -E ./setup.rb
+before_install: sudo -E ./setup.rb
