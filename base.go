@@ -152,6 +152,11 @@ func (api *API) Version() (v string, err error) {
 	api.Auth = ""
 	response, err := api.CallWithError("APIInfo.version", Params{})
 	api.Auth = auth
+
+	// despite what documentation says, Zabbix 2.2 requires auth, so we try again
+	if e, ok := err.(*Error); ok && e.Code == -32602 {
+		response, err = api.CallWithError("APIInfo.version", Params{})
+	}
 	if err != nil {
 		return
 	}
