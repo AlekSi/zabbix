@@ -1,0 +1,21 @@
+sudo: required
+dist: trusty
+language: go
+
+go:
+  - 1.5.1
+
+env:
+  global:
+    - TEST_ZABBIX_URL=http://localhost:80/zabbix/api_jsonrpc.php
+    - TEST_ZABBIX_USER=Admin
+    - TEST_ZABBIX_PASSWORD=zabbix
+    - TEST_ZABBIX_VERBOSE=1
+  matrix:
+    - ZABBIX_VERSION=1.8
+    - ZABBIX_VERSION=2.0
+    - ZABBIX_VERSION=2.2
+    - ZABBIX_VERSION=2.4
+
+before_install:
+  - sudo -E ./setup.rb
