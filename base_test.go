@@ -79,7 +79,7 @@ func TestVersion(t *testing.T) {
 		t.Fatal(err)
 	}
 	t.Logf("Zabbix version %s", v)
-	if !regexp.MustCompile(`^\d\.\d\.\d$`).MatchString(v) {
+	if !regexp.MustCompile(`^\d\.\d\.\d+$`).MatchString(v) {
 		t.Errorf("Unexpected version: %s", v)
 	}
 }
