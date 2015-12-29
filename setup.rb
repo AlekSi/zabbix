@@ -16,7 +16,17 @@ end
 
 run('wget -qO - http://repo.zabbix.com/zabbix-official-repo.key | apt-key add -')
 run("add-apt-repository 'deb http://repo.zabbix.com/zabbix/#{ZABBIX_VERSION}/ubuntu/ precise main non-free contrib'")
-run('ls -l /etc/apt/sources.list.d')
+
+# remove apt.postgresql.org repository and use only standard one,
+# otherwise Zabbix 2.0 will not be installed with error:
+#   The following packages have unmet dependencies:
+#   zabbix-server-pgsql : Depends: libiodbc2 (>= 3.52.7) but it is not going to be installed
+#   E: Unable to correct problems, you have held broken packages.
+run("add-apt-repository --remove 'deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main'")
+run('apt-get purge -y postgresql.*')
+run('apt-get autoremove --purge')
+run('rm -fr /var/lib/postgresql /etc/postgresql')
+
 run('apt-get update')
 run('apt-get install -y postgresql-9.1')
 run('apt-get install -y apache2 libapache2-mod-php5 php5-pgsql')
