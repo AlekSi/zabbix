@@ -16,4 +16,4 @@ env:
     - ZABBIX_VERSION=2.2
     - ZABBIX_VERSION=2.4
 
-before_install: sudo -E ./setup.rb
+before_install: sudo hostname travis && sudo -E ./setup.rb
