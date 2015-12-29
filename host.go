@@ -125,7 +125,7 @@ func (api *API) HostsDelete(hosts Hosts) (err error) {
 	return
 }
 
-// Wrapper for host.delete: https://www.zabbxix.com/documentation/2.2/manual/appendix/api/host/delete
+// Wrapper for host.delete: https://www.zabbix.com/documentation/2.2/manual/appendix/api/host/delete
 func (api *API) HostsDeleteByIds(ids []string) (err error) {
 	hostIds := make([]map[string]string, len(ids))
 	for i, id := range ids {
@@ -133,6 +133,12 @@ func (api *API) HostsDeleteByIds(ids []string) (err error) {
 	}
 
 	response, err := api.CallWithError("host.delete", hostIds)
+	if err != nil {
+		// Zabbix 2.4 uses new syntax only
+		if e, ok := err.(*Error); ok && e.Code == -32500 {
+			response, err = api.CallWithError("host.delete", ids)
+		}
+	}
 	if err != nil {
 		return
 	}
