@@ -16,6 +16,7 @@ end
 
 run('wget -qO - http://repo.zabbix.com/zabbix-official-repo.key | apt-key add -')
 run("add-apt-repository 'deb http://repo.zabbix.com/zabbix/#{ZABBIX_VERSION}/ubuntu/ precise main non-free contrib'")
+run('ls -l /etc/apt/sources.list.d')
 run('apt-get update')
 run('apt-get install -y postgresql-9.1')
 run('apt-get install -y apache2 libapache2-mod-php5 php5-pgsql')
