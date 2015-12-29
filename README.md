@@ -1,7 +1,5 @@
-zabbix
+zabbix [![Build Status](https://travis-ci.org/AlekSi/zabbix.svg?branch=master)](https://travis-ci.org/AlekSi/zabbix) [![GoDoc](https://godoc.org/github.com/AlekSi/zabbix?status.svg)](http://godoc.org/github.com/AlekSi/zabbix)
 ======
-
-[![GoDoc](https://godoc.org/github.com/AlekSi/zabbix?status.svg)](http://godoc.org/github.com/AlekSi/zabbix)
 
 This Go package provides access to Zabbix API.
 

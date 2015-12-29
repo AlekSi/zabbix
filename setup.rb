@@ -10,14 +10,14 @@ def run(cmd)
   res = system cmd
   if not res
     puts "#{res} #{$?}"
-    exit $?.to_i
+    exit res
   end
 end
 
 run('wget -qO - http://repo.zabbix.com/zabbix-official-repo.key | apt-key add -')
 run("add-apt-repository 'deb http://repo.zabbix.com/zabbix/#{ZABBIX_VERSION}/ubuntu/ precise main non-free contrib'")
-run('apt-get update -qq')
-run('apt-get install -y postgresql')
+run('apt-get update')
+run('apt-get install -y postgresql-9.1')
 run('apt-get install -y apache2 libapache2-mod-php5 php5-pgsql')
 File.open('/etc/php5/apache2/php.ini', 'a') do |f|
   f.puts '[Date]'
