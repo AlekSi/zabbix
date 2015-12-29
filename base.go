@@ -88,7 +88,7 @@ func (api *API) callBytes(method string, params interface{}) (b []byte, err erro
 	if err != nil {
 		return
 	}
-	api.printf("Request : %s", b)
+	api.printf("Request (POST): %s", b)
 
 	req, err := http.NewRequest("POST", api.url, bytes.NewReader(b))
 	if err != nil {
@@ -106,7 +106,7 @@ func (api *API) callBytes(method string, params interface{}) (b []byte, err erro
 	defer res.Body.Close()
 
 	b, err = ioutil.ReadAll(res.Body)
-	api.printf("Response: %s", b)
+	api.printf("Response (%d): %s", res.StatusCode, b)
 	return
 }
 
@@ -130,6 +130,7 @@ func (api *API) CallWithError(method string, params interface{}) (response Respo
 }
 
 // Calls "user.login" API method and fills api.Auth field.
+// This method modifies API structure and should not be called concurrently with other methods.
 func (api *API) Login(user, password string) (auth string, err error) {
 	params := map[string]string{"user": user, "password": password}
 	response, err := api.CallWithError("user.login", params)
@@ -142,9 +143,15 @@ func (api *API) Login(user, password string) (auth string, err error) {
 	return
 }
 
-// Calls "APIInfo.version" API method
+// Calls "APIInfo.version" API method.
+// This method temporary modifies API structure and should not be called concurrently with other methods.
 func (api *API) Version() (v string, err error) {
+	// temporary remove auth for this method to succeed
+	// https://www.zabbix.com/documentation/2.0/manual/appendix/api/apiinfo/version
+	auth := api.Auth
+	api.Auth = ""
 	response, err := api.CallWithError("APIInfo.version", Params{})
+	api.Auth = auth
 	if err != nil {
 		return
 	}
