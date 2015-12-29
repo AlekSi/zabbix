@@ -1,7 +1,7 @@
 zabbix [![Build Status](https://travis-ci.org/AlekSi/zabbix.svg?branch=master)](https://travis-ci.org/AlekSi/zabbix) [![GoDoc](https://godoc.org/github.com/AlekSi/zabbix?status.svg)](http://godoc.org/github.com/AlekSi/zabbix)
 ======
 
-This Go package provides access to Zabbix API.
+This Go package provides access to Zabbix API. Tested on Zabbix 2.0, 2.2, 2.4.
 
 Install it: `go get github.com/AlekSi/zabbix`
 
