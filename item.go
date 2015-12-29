@@ -47,7 +47,7 @@ const (
 	Delta DeltaType = 2
 )
 
-// https://www.zabbix.com/documentation/2.0/manual/appendix/api/item/definitions
+// https://www.zabbix.com/documentation/2.2/manual/appendix/api/item/definitions
 type Item struct {
 	ItemId      string    `json:"itemid,omitempty"`
 	Delay       int       `json:"delay"`
@@ -83,7 +83,7 @@ func (items Items) ByKey() (res map[string]Item) {
 	return
 }
 
-// Wrapper for item.get https://www.zabbix.com/documentation/2.0/manual/appendix/api/item/get
+// Wrapper for item.get https://www.zabbix.com/documentation/2.2/manual/appendix/api/item/get
 func (api *API) ItemsGet(params Params) (res Items, err error) {
 	if _, present := params["output"]; !present {
 		params["output"] = "extend"
@@ -102,7 +102,7 @@ func (api *API) ItemsGetByApplicationId(id string) (res Items, err error) {
 	return api.ItemsGet(Params{"applicationids": id})
 }
 
-// Wrapper for item.create: https://www.zabbix.com/documentation/2.0/manual/appendix/api/item/create
+// Wrapper for item.create: https://www.zabbix.com/documentation/2.2/manual/appendix/api/item/create
 func (api *API) ItemsCreate(items Items) (err error) {
 	response, err := api.CallWithError("item.create", items)
 	if err != nil {
@@ -117,7 +117,7 @@ func (api *API) ItemsCreate(items Items) (err error) {
 	return
 }
 
-// Wrapper for item.delete: https://www.zabbix.com/documentation/2.0/manual/appendix/api/item/delete
+// Wrapper for item.delete: https://www.zabbix.com/documentation/2.2/manual/appendix/api/item/delete
 // Cleans ItemId in all items elements if call succeed.
 func (api *API) ItemsDelete(items Items) (err error) {
 	ids := make([]string, len(items))
@@ -134,7 +134,7 @@ func (api *API) ItemsDelete(items Items) (err error) {
 	return
 }
 
-// Wrapper for item.delete: https://www.zabbix.com/documentation/2.0/manual/appendix/api/item/delete
+// Wrapper for item.delete: https://www.zabbix.com/documentation/2.2/manual/appendix/api/item/delete
 func (api *API) ItemsDeleteByIds(ids []string) (err error) {
 	response, err := api.CallWithError("item.delete", ids)
 	if err != nil {

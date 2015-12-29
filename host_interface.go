@@ -11,7 +11,7 @@ const (
 	JMX   InterfaceType = 4
 )
 
-// https://www.zabbix.com/documentation/2.0/manual/appendix/api/hostinterface/definitions
+// https://www.zabbix.com/documentation/2.2/manual/appendix/api/hostinterface/definitions
 type HostInterface struct {
 	DNS   string        `json:"dns"`
 	IP    string        `json:"ip"`

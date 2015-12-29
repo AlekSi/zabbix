@@ -17,7 +17,7 @@ const (
 	Unmonitored StatusType = 1
 )
 
-// https://www.zabbix.com/documentation/2.0/manual/appendix/api/host/definitions
+// https://www.zabbix.com/documentation/2.2/manual/appendix/api/host/definitions
 type Host struct {
 	HostId    string        `json:"hostid,omitempty"`
 	Host      string        `json:"host"`
@@ -33,7 +33,7 @@ type Host struct {
 
 type Hosts []Host
 
-// Wrapper for host.get: https://www.zabbix.com/documentation/2.0/manual/appendix/api/host/get
+// Wrapper for host.get: https://www.zabbix.com/documentation/2.2/manual/appendix/api/host/get
 func (api *API) HostsGet(params Params) (res Hosts, err error) {
 	if _, present := params["output"]; !present {
 		params["output"] = "extend"
@@ -93,7 +93,7 @@ func (api *API) HostGetByHost(host string) (res *Host, err error) {
 	return
 }
 
-// Wrapper for host.create: https://www.zabbix.com/documentation/2.0/manual/appendix/api/host/create
+// Wrapper for host.create: https://www.zabbix.com/documentation/2.2/manual/appendix/api/host/create
 func (api *API) HostsCreate(hosts Hosts) (err error) {
 	response, err := api.CallWithError("host.create", hosts)
 	if err != nil {
@@ -108,7 +108,7 @@ func (api *API) HostsCreate(hosts Hosts) (err error) {
 	return
 }
 
-// Wrapper for host.delete: https://www.zabbix.com/documentation/2.0/manual/appendix/api/host/delete
+// Wrapper for host.delete: https://www.zabbix.com/documentation/2.2/manual/appendix/api/host/delete
 // Cleans HostId in all hosts elements if call succeed.
 func (api *API) HostsDelete(hosts Hosts) (err error) {
 	ids := make([]string, len(hosts))
@@ -125,7 +125,7 @@ func (api *API) HostsDelete(hosts Hosts) (err error) {
 	return
 }
 
-// Wrapper for host.delete: https://www.zabbxix.com/documentation/2.0/manual/appendix/api/host/delete
+// Wrapper for host.delete: https://www.zabbxix.com/documentation/2.2/manual/appendix/api/host/delete
 func (api *API) HostsDeleteByIds(ids []string) (err error) {
 	hostIds := make([]map[string]string, len(ids))
 	for i, id := range ids {

@@ -4,7 +4,7 @@ import (
 	"github.com/AlekSi/reflector"
 )
 
-// https://www.zabbix.com/documentation/2.0/manual/appendix/api/application/definitions
+// https://www.zabbix.com/documentation/2.2/manual/appendix/api/application/definitions
 type Application struct {
 	ApplicationId string `json:"applicationid,omitempty"`
 	HostId        string `json:"hostid"`
@@ -14,7 +14,7 @@ type Application struct {
 
 type Applications []Application
 
-// Wrapper for application.get: https://www.zabbix.com/documentation/2.0/manual/appendix/api/application/get
+// Wrapper for application.get: https://www.zabbix.com/documentation/2.2/manual/appendix/api/application/get
 func (api *API) ApplicationsGet(params Params) (res Applications, err error) {
 	if _, present := params["output"]; !present {
 		params["output"] = "extend"
@@ -60,7 +60,7 @@ func (api *API) ApplicationGetByHostIdAndName(hostId, name string) (res *Applica
 	return
 }
 
-// Wrapper for application.create: https://www.zabbix.com/documentation/2.0/manual/appendix/api/application/create
+// Wrapper for application.create: https://www.zabbix.com/documentation/2.2/manual/appendix/api/application/create
 func (api *API) ApplicationsCreate(apps Applications) (err error) {
 	response, err := api.CallWithError("application.create", apps)
 	if err != nil {
@@ -75,7 +75,7 @@ func (api *API) ApplicationsCreate(apps Applications) (err error) {
 	return
 }
 
-// Wrapper for application.delete: https://www.zabbix.com/documentation/2.0/manual/appendix/api/application/delete
+// Wrapper for application.delete: https://www.zabbix.com/documentation/2.2/manual/appendix/api/application/delete
 // Cleans ApplicationId in all apps elements if call succeed.
 func (api *API) ApplicationsDelete(apps Applications) (err error) {
 	ids := make([]string, len(apps))
@@ -92,7 +92,7 @@ func (api *API) ApplicationsDelete(apps Applications) (err error) {
 	return
 }
 
-// Wrapper for application.delete: https://www.zabbix.com/documentation/2.0/manual/appendix/api/application/delete
+// Wrapper for application.delete: https://www.zabbix.com/documentation/2.2/manual/appendix/api/application/delete
 func (api *API) ApplicationsDeleteByIds(ids []string) (err error) {
 	response, err := api.CallWithError("application.delete", ids)
 	if err != nil {

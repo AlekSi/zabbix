@@ -147,7 +147,7 @@ func (api *API) Login(user, password string) (auth string, err error) {
 // This method temporary modifies API structure and should not be called concurrently with other methods.
 func (api *API) Version() (v string, err error) {
 	// temporary remove auth for this method to succeed
-	// https://www.zabbix.com/documentation/2.0/manual/appendix/api/apiinfo/version
+	// https://www.zabbix.com/documentation/2.2/manual/appendix/api/apiinfo/version
 	auth := api.Auth
 	api.Auth = ""
 	response, err := api.CallWithError("APIInfo.version", Params{})
