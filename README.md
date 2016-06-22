@@ -1,4 +1,4 @@
-zabbix [![GoDoc](https://godoc.org/AlekSi/zabbix?status.svg)](https://godoc.org/AlekSi/zabbix) [![Build Status](https://travis-ci.org/AlekSi/zabbix.svg?branch=master)](https://travis-ci.org/AlekSi/zabbix??branch=master) [![Go Report Card](https://goreportcard.com/badge/AlekSi/zabbix)](https://goreportcard.com/report/AlekSi/zabbix)
+zabbix [![GoDoc](https://godoc.org/github.com/AlekSi/zabbix?status.svg)](https://godoc.org/github.com/AlekSi/zabbix) [![Build Status](https://travis-ci.org/AlekSi/zabbix.svg?branch=master)](https://travis-ci.org/AlekSi/zabbix??branch=master) [![Go Report Card](https://goreportcard.com/badge/github.com/AlekSi/zabbix)](https://goreportcard.com/report/github.com/AlekSi/zabbix)
 ======
 
 This Go package provides access to Zabbix API. Tested on Zabbix 2.0, 2.2, 2.4.
